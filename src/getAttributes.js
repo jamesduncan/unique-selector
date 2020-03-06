@@ -5,23 +5,23 @@
  * @param  { Array } array of attributes to accept
  * @return { Array }
  */
-export function getAttributes( el, attributes = ['id', 'class', 'length'], ignore = true )
+export function getAttributes( el, attributesList = ['id', 'class', 'length'], ignore = true )
 {
   const { attributes } = el;
-  const attrs = [ ...attributes ];
+  const attrs = [...attributes];
 
   return attrs.reduce( ( sum, next ) =>
   {
-    if (ignore) {
-        if ( ! ( attributes.indexOf( next.nodeName ) > -1 ) )
+    if ( ignore ) {
+      if ( ! ( attributesList.indexOf( next.nodeName ) > -1 ) )
         {
-          sum.push( `[${next.nodeName}="${next.value}"]` );
-        }        
+        sum.push( `[${next.nodeName}="${next.value}"]` );
+      }
     } else {
-        if ( ( attributes.indexOf( next.nodeName ) > -1 ) )
+      if ( ( attributesList.indexOf( next.nodeName ) > -1 ) )
         {
-          sum.push( `[${next.nodeName}="${next.value}"]` );
-        }
+        sum.push( `[${next.nodeName}="${next.value}"]` );
+      }
     }
     return sum;
   }, [] );
